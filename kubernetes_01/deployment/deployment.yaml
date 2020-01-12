@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-deployment
+  template:
+    metadata:
+      labels:
+        app: hello-deployment
+        version: "1"
+    spec:
+      containers:
+      - image: gcr.io/my-project-id/kubernetes_01:1.1.dev
+        name: hello-container
+        ports:
+        - containerPort: 8001
+          name: http
+          protocol: TCP
